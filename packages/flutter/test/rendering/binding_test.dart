@@ -19,6 +19,7 @@ void main() {
     RendererBinding.instance.handleMetricsChanged();
     expect(SchedulerBinding.instance.hasScheduledFrame, true);
   });
+<<<<<<< HEAD
 
   test('debugDumpSemantics prints explanation when semantics are unavailable', () {
     final List<String?> log = <String?>[];
@@ -35,4 +36,6 @@ void main() {
         'To generate semantics, try turning on an assistive technology (like VoiceOver or TalkBack) on your device.'
     );
   });
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 }

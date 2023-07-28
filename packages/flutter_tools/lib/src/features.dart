@@ -87,6 +87,22 @@ const Feature flutterMacOSDesktopFeature = Feature.fullyEnabled(
   name: 'support for desktop on macOS',
   configSetting: 'enable-macos-desktop',
   environmentOverride: 'FLUTTER_MACOS',
+<<<<<<< HEAD
+=======
+  extraHelpText: 'Newer beta versions are available on the beta channel.',
+  master: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+  ),
+  beta: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+  ),
+  stable: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+  ),
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 );
 
 /// The [Feature] for Linux desktop.
@@ -94,6 +110,22 @@ const Feature flutterLinuxDesktopFeature = Feature.fullyEnabled(
   name: 'support for desktop on Linux',
   configSetting: 'enable-linux-desktop',
   environmentOverride: 'FLUTTER_LINUX',
+<<<<<<< HEAD
+=======
+  extraHelpText: 'Newer beta versions are available on the beta channel.',
+  master: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+  ),
+  beta: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+  ),
+  stable: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+  ),
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 );
 
 /// The [Feature] for Windows desktop.
@@ -101,6 +133,28 @@ const Feature flutterWindowsDesktopFeature = Feature.fullyEnabled(
   name: 'support for desktop on Windows',
   configSetting: 'enable-windows-desktop',
   environmentOverride: 'FLUTTER_WINDOWS',
+<<<<<<< HEAD
+=======
+  master: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+<<<<<<< HEAD
+  ),
+  dev: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+=======
+>>>>>>> ee4e09cce01d6f2d7f4baebd247fde02e5008851
+  ),
+  beta: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+  ),
+  stable: FeatureChannelSetting(
+    available: true,
+    enabledByDefault: true,
+  ),
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 );
 
 /// The [Feature] for Android devices.

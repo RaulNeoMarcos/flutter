@@ -455,9 +455,15 @@ class _MaterialState extends State<Material> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final Color? backgroundColor = _getBackgroundColor(context);
+<<<<<<< HEAD
     final Color modelShadowColor = widget.shadowColor ?? (theme.useMaterial3 ? theme.colorScheme.shadow : theme.shadowColor);
     // If no shadow color is specified, use 0 for elevation in the model so a drop shadow won't be painted.
     final double modelElevation = widget.elevation;
+=======
+    final Color? modelShadowColor = widget.shadowColor ?? (theme.useMaterial3 ? null : theme.shadowColor);
+    // If no shadow color is specified, use 0 for elevation in the model so a drop shadow won't be painted.
+    final double modelElevation = modelShadowColor != null ? widget.elevation : 0;
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     assert(
       backgroundColor != null || widget.type == MaterialType.transparency,
       'If Material type is not MaterialType.transparency, a color must '
@@ -509,7 +515,11 @@ class _MaterialState extends State<Material> with TickerProviderStateMixin {
         clipBehavior: widget.clipBehavior,
         elevation: modelElevation,
         color: color,
+<<<<<<< HEAD
         shadowColor: modelShadowColor,
+=======
+        shadowColor: modelShadowColor ?? const Color(0x00000000),
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
         animateColor: false,
         child: contents,
       );
@@ -853,9 +863,20 @@ class _MaterialInterior extends ImplicitlyAnimatedWidget {
     required this.color,
     required this.shadowColor,
     required this.surfaceTintColor,
+<<<<<<< HEAD
     super.curve,
     required super.duration,
   }) : assert(elevation >= 0.0);
+=======
+    Curve curve = Curves.linear,
+    required Duration duration,
+  }) : assert(child != null),
+       assert(shape != null),
+       assert(clipBehavior != null),
+       assert(elevation != null && elevation >= 0.0),
+       assert(color != null),
+       super(key: key, curve: curve, duration: duration);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   /// The widget below this widget in the tree.
   ///

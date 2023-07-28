@@ -3962,6 +3962,7 @@ abstract class Element extends DiagnosticableTree implements BuildContext {
           assert(newChild == updatedChild);
           return updatedChild!;
         }
+<<<<<<< HEAD
       }
       final Element newChild = newWidget.createElement();
       assert(() {
@@ -3975,7 +3976,21 @@ abstract class Element extends DiagnosticableTree implements BuildContext {
     } finally {
       if (isTimelineTracked) {
         Timeline.finishSync();
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       }
+      final Element newChild = newWidget.createElement();
+      assert(() {
+        _debugCheckForCycles(newChild);
+        return true;
+      }());
+      newChild.mount(this, newSlot);
+      assert(newChild._lifecycleState == _ElementLifecycle.active);
+
+      return newChild;
+    } finally {
+      if (isTimelineTracked)
+        Timeline.finishSync();
     }
   }
 

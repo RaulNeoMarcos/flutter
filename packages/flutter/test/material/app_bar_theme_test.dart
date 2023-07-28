@@ -54,7 +54,11 @@ void main() {
       expect(iconTheme.data, IconThemeData(color: theme.colorScheme.onSurface, size: 24));
       expect(actionsIconTheme.data, IconThemeData(color: theme.colorScheme.onSurfaceVariant, size: 24));
       expect(actionIconText.text.style!.color, Colors.black);
+<<<<<<< HEAD
       expect(text.style, Typography.material2021().englishLike.bodyMedium!.merge(Typography.material2021().black.bodyMedium).copyWith(color: theme.colorScheme.onSurface));
+=======
+      expect(text.style, Typography.material2021().englishLike.bodyText2!.merge(Typography.material2021().black.bodyText2).copyWith(color: theme.colorScheme.onSurface));
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       expect(tester.getSize(find.byType(AppBar)).height, kToolbarHeight);
       expect(tester.getSize(find.byType(AppBar)).width, 800);
     } else {
@@ -67,7 +71,11 @@ void main() {
       expect(iconTheme.data, const IconThemeData(color: Colors.white));
       expect(actionsIconTheme.data, const IconThemeData(color: Colors.white));
       expect(actionIconText.text.style!.color, Colors.white);
+<<<<<<< HEAD
       expect(text.style, Typography.material2014().englishLike.bodyMedium!.merge(Typography.material2014().white.bodyMedium));
+=======
+      expect(text.style, Typography.material2014().englishLike.bodyText2!.merge(Typography.material2014().white.bodyText2));
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       expect(tester.getSize(find.byType(AppBar)).height, kToolbarHeight);
       expect(tester.getSize(find.byType(AppBar)).width, 800);
     }
@@ -247,7 +255,11 @@ void main() {
       // - surface tint color: ColorScheme.surfaceTint
       // - background color: ColorScheme.surface
       // - foreground color: ColorScheme.onSurface
+<<<<<<< HEAD
       // - actions text: style bodyMedium, foreground color
+=======
+      // - actions text: style bodyText2, foreground color
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       // - status bar brightness: light (based on color scheme brightness)
       {
         await tester.pumpWidget(buildFrame(lightTheme));
@@ -266,7 +278,11 @@ void main() {
         expect(iconTheme.data.color, lightTheme.colorScheme.onSurface);
         expect(actionsIconTheme.data.color, lightTheme.colorScheme.onSurface);
         expect(actionIconText.text.style!.color, lightTheme.colorScheme.onSurface);
+<<<<<<< HEAD
         expect(text.style, Typography.material2021().englishLike.bodyMedium!.merge(Typography.material2021().black.bodyMedium).copyWith(color: lightTheme.colorScheme.onSurface));
+=======
+        expect(text.style, Typography.material2021().englishLike.bodyText2!.merge(Typography.material2021().black.bodyText2).copyWith(color: lightTheme.colorScheme.onSurface));
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       }
 
       // M3 AppBar defaults for dark themes:
@@ -275,7 +291,11 @@ void main() {
       // - surface tint color: ColorScheme.surfaceTint
       // - background color: ColorScheme.surface
       // - foreground color: ColorScheme.onSurface
+<<<<<<< HEAD
       // - actions text: style bodyMedium, foreground color
+=======
+      // - actions text: style bodyText2, foreground color
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       // - status bar brightness: dark (based on background color)
       {
         await tester.pumpWidget(buildFrame(ThemeData.from(colorScheme: const ColorScheme.dark())));
@@ -295,7 +315,11 @@ void main() {
         expect(iconTheme.data.color, darkTheme.colorScheme.onSurface);
         expect(actionsIconTheme.data.color, darkTheme.colorScheme.onSurface);
         expect(actionIconText.text.style!.color, darkTheme.colorScheme.onSurface);
+<<<<<<< HEAD
         expect(text.style, Typography.material2021().englishLike.bodyMedium!.merge(Typography.material2021().black.bodyMedium).copyWith(color: darkTheme.colorScheme.onSurface));
+=======
+        expect(text.style, Typography.material2021().englishLike.bodyText2!.merge(Typography.material2021().black.bodyText2).copyWith(color: darkTheme.colorScheme.onSurface));
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       }
     } else {
       // AppBar defaults for light themes:
@@ -304,7 +328,11 @@ void main() {
       // - surface tint color: null
       // - background color: ColorScheme.primary
       // - foreground color: ColorScheme.onPrimary
+<<<<<<< HEAD
       // - actions text: style bodyMedium, foreground color
+=======
+      // - actions text: style bodyText2, foreground color
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       // - status bar brightness: light (based on color scheme brightness)
       {
         await tester.pumpWidget(buildFrame(lightTheme));
@@ -323,7 +351,11 @@ void main() {
         expect(iconTheme.data.color, lightTheme.colorScheme.onPrimary);
         expect(actionsIconTheme.data.color, lightTheme.colorScheme.onPrimary);
         expect(actionIconText.text.style!.color, lightTheme.colorScheme.onPrimary);
+<<<<<<< HEAD
         expect(text.style, Typography.material2014().englishLike.bodyMedium!.merge(Typography.material2014().black.bodyMedium).copyWith(color: lightTheme.colorScheme.onPrimary));
+=======
+        expect(text.style, Typography.material2014().englishLike.bodyText2!.merge(Typography.material2014().black.bodyText2).copyWith(color: lightTheme.colorScheme.onPrimary));
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       }
 
       // AppBar defaults for dark themes:
@@ -332,7 +364,11 @@ void main() {
       // - surface tint color: null
       // - background color: ColorScheme.surface
       // - foreground color: ColorScheme.onSurface
+<<<<<<< HEAD
       // - actions text: style bodyMedium, foreground color
+=======
+      // - actions text: style bodyText2, foreground color
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       // - status bar brightness: dark (based on background color)
       {
         await tester.pumpWidget(buildFrame(darkTheme));
@@ -352,7 +388,11 @@ void main() {
         expect(iconTheme.data.color, darkTheme.colorScheme.onSurface);
         expect(actionsIconTheme.data.color, darkTheme.colorScheme.onSurface);
         expect(actionIconText.text.style!.color, darkTheme.colorScheme.onSurface);
+<<<<<<< HEAD
         expect(text.style, Typography.material2014().englishLike.bodyMedium!.merge(Typography.material2014().black.bodyMedium).copyWith(color: darkTheme.colorScheme.onSurface));
+=======
+        expect(text.style, Typography.material2014().englishLike.bodyText2!.merge(Typography.material2014().black.bodyText2).copyWith(color: darkTheme.colorScheme.onSurface));
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       }
     }
   });
@@ -471,6 +511,7 @@ void main() {
     expect(appBar.surfaceTintColor, Colors.yellow);
   });
 
+<<<<<<< HEAD
   testWidgets('AppBarTheme.iconTheme.color takes priority over IconButtonTheme.foregroundColor - M3', (WidgetTester tester) async {
     const IconThemeData overallIconTheme = IconThemeData(color: Colors.yellow);
     await tester.pumpWidget(MaterialApp(
@@ -614,6 +655,8 @@ void main() {
     expect(actionIconButtonColor, appBarTheme.foregroundColor);
   });
 
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   testWidgets('AppBar uses AppBarTheme.titleSpacing', (WidgetTester tester) async {
     const double kTitleSpacing = 10;
     await tester.pumpWidget(MaterialApp(

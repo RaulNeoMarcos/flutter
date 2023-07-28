@@ -965,11 +965,19 @@ void main() {
             data: const MediaQueryData(),
             child: Center(
               child: OutlinedButton(
+<<<<<<< HEAD
                 style: const ButtonStyle(
                   // Specifying minimumSize to mimic the original minimumSize for
                   // RaisedButton so that the corresponding button size matches
                   // the original version of this test.
                   minimumSize: MaterialStatePropertyAll<Size>(Size(88, 36)),
+=======
+                style: ButtonStyle(
+                  // Specifying minimumSize to mimic the original minimumSize for
+                  // RaisedButton so that the corresponding button size matches
+                  // the original version of this test.
+                  minimumSize: MaterialStateProperty.all<Size>(const Size(88, 36)),
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
                 ),
                 onPressed: () {},
                 child: const Text('ABC'),
@@ -994,11 +1002,19 @@ void main() {
             data: const MediaQueryData(textScaleFactor: 1.3),
             child: Center(
               child: OutlinedButton(
+<<<<<<< HEAD
                 style: const ButtonStyle(
                   // Specifying minimumSize to mimic the original minimumSize for
                   // RaisedButton so that the corresponding button size matches
                   // the original version of this test.
                   minimumSize: MaterialStatePropertyAll<Size>(Size(88, 36)),
+=======
+                style: ButtonStyle(
+                  // Specifying minimumSize to mimic the original minimumSize for
+                  // RaisedButton so that the corresponding button size matches
+                  // the original version of this test.
+                  minimumSize: MaterialStateProperty.all<Size>(const Size(88, 36)),
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
                 ),
                 onPressed: () {},
                 child: const Text('ABC'),
@@ -1032,9 +1048,19 @@ void main() {
       ),
     );
 
+<<<<<<< HEAD
     expect(tester.getSize(find.byType(OutlinedButton)), const Size(134.0, 48.0));
     expect(tester.getSize(find.byType(Text)), const Size(126.0, 42.0));
   }, skip: kIsWeb && !isCanvasKit); // https://github.com/flutter/flutter/issues/122066
+=======
+    // Scaled text rendering is different on Linux and Mac by one pixel.
+    // TODO(gspencergoog): Figure out why this is, and fix it. https://github.com/flutter/flutter/issues/12357
+    expect(tester.getSize(find.byType(OutlinedButton)).width, isIn(<double>[133.0, 134.0]));
+    expect(tester.getSize(find.byType(OutlinedButton)).height, equals(48.0));
+    expect(tester.getSize(find.byType(Text)).width, isIn(<double>[126.0, 127.0]));
+    expect(tester.getSize(find.byType(Text)).height, equals(42.0));
+  });
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   testWidgets('OutlinedButton onPressed and onLongPress callbacks are distinctly recognized', (WidgetTester tester) async {
     bool didPressButton = false;

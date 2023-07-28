@@ -1289,6 +1289,7 @@ void main() {
     expect(getMaterial().elevation, 10);
   });
 
+<<<<<<< HEAD
   testWidgets('scrolledUnderElevation with nested scroll view', (WidgetTester tester) async {
     Widget buildAppBar({double? scrolledUnderElevation}) {
       return MaterialApp(
@@ -1336,6 +1337,8 @@ void main() {
     expect(getMaterial().elevation, 10);
   });
 
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   group('SliverAppBar elevation', () {
     Widget buildSliverAppBar(bool forceElevated, {double? elevation, double? themeElevation}) {
       return MaterialApp(
@@ -2461,6 +2464,7 @@ void main() {
     Widget buildAppBar(ThemeData theme) {
       return MaterialApp(
         theme: theme,
+<<<<<<< HEAD
         home: Scaffold(
           appBar: AppBar(title: const Text('Title')),
         ),
@@ -2544,12 +2548,58 @@ void main() {
             title: const Text('test'),
             systemOverlayStyle: systemOverlayStyle,
           ),
+=======
+        home: Scaffold(
+          appBar: AppBar(title: const Text('Title')),
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
         ),
-      ),
-    );
+      );
+    }
 
+<<<<<<< HEAD
     expect(SystemChrome.latestStyle!.statusBarColor, Colors.red);
     expect(SystemChrome.latestStyle!.systemNavigationBarColor, Colors.green);
+=======
+    // Using a light theme.
+    {
+      await tester.pumpWidget(buildAppBar(ThemeData.from(colorScheme: const ColorScheme.light())));
+      final Material appBarMaterial = tester.widget<Material>(
+        find.descendant(
+          of: find.byType(AppBar),
+          matching: find.byType(Material),
+        ),
+      );
+      final Brightness appBarBrightness = ThemeData.estimateBrightnessForColor(appBarMaterial.color!);
+      final Brightness onAppBarBrightness = appBarBrightness == Brightness.light
+        ? Brightness.dark
+        : Brightness.light;
+
+      expect(SystemChrome.latestStyle, SystemUiOverlayStyle(
+        statusBarBrightness: appBarBrightness,
+        statusBarIconBrightness: onAppBarBrightness,
+      ));
+    }
+
+    // Using a dark theme.
+    {
+      await tester.pumpWidget(buildAppBar(ThemeData.from(colorScheme: const ColorScheme.dark())));
+      final Material appBarMaterial = tester.widget<Material>(
+        find.descendant(
+          of: find.byType(AppBar),
+          matching: find.byType(Material),
+        ),
+      );
+      final Brightness appBarBrightness = ThemeData.estimateBrightnessForColor(appBarMaterial.color!);
+      final Brightness onAppBarBrightness = appBarBrightness == Brightness.light
+          ? Brightness.dark
+          : Brightness.light;
+
+      expect(SystemChrome.latestStyle, SystemUiOverlayStyle(
+        statusBarBrightness: appBarBrightness,
+        statusBarIconBrightness: onAppBarBrightness,
+      ));
+    }
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   });
 
   testWidgets('Changing SliverAppBar snap from true to false', (WidgetTester tester) async {
@@ -3056,7 +3106,16 @@ void main() {
     final bool material3 = themeData.useMaterial3;
     await tester.pumpWidget(
       MaterialApp(
+<<<<<<< HEAD
         theme: themeData,
+=======
+        theme: ThemeData.light().copyWith(
+          useMaterial3: false,
+          appBarTheme: const AppBarTheme(
+            backwardsCompatibility: false,
+          ),
+        ),
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
         home: Scaffold(
           appBar: AppBar(
             leading: const Icon(Icons.add_circle),

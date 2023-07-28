@@ -17,12 +17,16 @@
 import 'dart:convert';
 import 'dart:io';
 
+<<<<<<< HEAD
 import 'package:gen_defaults/action_chip_template.dart';
 import 'package:gen_defaults/app_bar_template.dart';
 import 'package:gen_defaults/badge_template.dart';
 import 'package:gen_defaults/banner_template.dart';
 import 'package:gen_defaults/bottom_app_bar_template.dart';
 import 'package:gen_defaults/bottom_sheet_template.dart';
+=======
+import 'package:gen_defaults/app_bar_template.dart';
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 import 'package:gen_defaults/button_template.dart';
 import 'package:gen_defaults/card_template.dart';
 import 'package:gen_defaults/checkbox_template.dart';
@@ -138,6 +142,7 @@ Future<void> main(List<String> args) async {
   tokens['colorsLight'] = _readTokenFile('color_light.json');
   tokens['colorsDark'] = _readTokenFile('color_dark.json');
 
+<<<<<<< HEAD
   ActionChipTemplate('Chip', '$materialLib/chip.dart', tokens).updateFile();
   ActionChipTemplate('ActionChip', '$materialLib/action_chip.dart', tokens).updateFile();
   AppBarTemplate('AppBar', '$materialLib/app_bar.dart', tokens).updateFile();
@@ -188,4 +193,17 @@ Future<void> main(List<String> args) async {
   TextFieldTemplate('TextField', '$materialLib/text_field.dart', tokens).updateFile();
   TabsTemplate('Tabs', '$materialLib/tabs.dart', tokens).updateFile();
   TypographyTemplate('Typography', '$materialLib/typography.dart', tokens).updateFile();
+=======
+  AppBarTemplate('$materialLib/app_bar.dart', tokens).updateFile();
+  ButtonTemplate('md.comp.elevated-button', '$materialLib/elevated_button.dart', tokens).updateFile();
+  ButtonTemplate('md.comp.outlined-button', '$materialLib/outlined_button.dart', tokens).updateFile();
+  ButtonTemplate('md.comp.text-button', '$materialLib/text_button.dart', tokens).updateFile();
+  CardTemplate('$materialLib/card.dart', tokens).updateFile();
+  DialogTemplate('$materialLib/dialog.dart', tokens).updateFile();
+  FABTemplate('$materialLib/floating_action_button.dart', tokens).updateFile();
+  NavigationBarTemplate('$materialLib/navigation_bar.dart', tokens).updateFile();
+  NavigationRailTemplate('$materialLib/navigation_rail.dart', tokens).updateFile();
+  SurfaceTintTemplate('$materialLib/elevation_overlay.dart', tokens).updateFile();
+  TypographyTemplate('$materialLib/typography.dart', tokens).updateFile();
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 }

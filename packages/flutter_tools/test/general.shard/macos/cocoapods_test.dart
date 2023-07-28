@@ -508,6 +508,7 @@ Note: as of CocoaPods 1.0, `pod repo update` does not happen on `pod install` by
             ..createSync()
             ..writeAsStringSync('Existing Podfile');
 
+<<<<<<< HEAD
           fakeProcessManager.addCommands(<FakeCommand>[
             FakeCommand(
               command: const <String>['pod', 'install', '--verbose'],
@@ -528,6 +529,27 @@ Note: as of CocoaPods 1.0, `pod repo update` does not happen on `pod install` by
               stdout: 'hw.optional.arm64: 1',
             ),
           ]);
+=======
+        fakeProcessManager.addCommands(<FakeCommand>[
+          FakeCommand(
+            command: const <String>['pod', 'install', '--verbose'],
+            workingDirectory: 'project/ios',
+            environment: const <String, String>{
+              'COCOAPODS_DISABLE_STATS': 'true',
+              'LANG': 'en_US.UTF-8',
+            },
+            exitCode: 1,
+            stderr: cocoaPodsError,
+          ),
+          const FakeCommand(
+            command: <String>['which', 'sysctl'],
+          ),
+          const FakeCommand(
+            command: <String>['sysctl', 'hw.optional.arm64'],
+            stdout: 'hw.optional.arm64: 1',
+          ),
+        ]);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
           await expectToolExitLater(
             cocoaPodsUnderTest.processPods(

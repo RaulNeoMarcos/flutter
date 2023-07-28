@@ -107,8 +107,13 @@ void main() {
 
     testWithoutContext('Flutter Windows desktop help string', () {
       expect(flutterWindowsDesktopFeature.generateHelpMessage(),
+<<<<<<< HEAD
+      'Enable or disable beta-quality support for desktop on Windows. '
+      'This setting will take effect on the master, dev, beta, and stable channels.');
+=======
       'Enable or disable support for desktop on Windows. '
       'This setting will take effect on the master, beta, and stable channels.');
+>>>>>>> ee4e09cce01d6f2d7f4baebd247fde02e5008851
     });
 
     testWithoutContext('help string on multiple channels', () {
@@ -405,5 +410,50 @@ void main() {
       });
     }
 
+<<<<<<< HEAD
+=======
+    testWithoutContext('Flutter Windows UWP desktop enabled with config on master', () {
+      final FeatureFlags featureFlags = createFlags('master');
+      testConfig.setValue('enable-windows-uwp-desktop', true);
+
+      expect(featureFlags.isWindowsUwpEnabled, true);
+    });
+
+    testWithoutContext('Flutter Windows UWP desktop config includes removal warning', () {
+      expect(windowsUwpEmbedding.extraHelpText, contains('Windows UWP support is obsolete and will be removed'));
+    });
+
+    testWithoutContext('Flutter Windows UWP desktop off by default on stable', () {
+      final FeatureFlags featureFlags = createFlags('stable');
+
+      expect(featureFlags.isWindowsUwpEnabled, false);
+    });
+
+    testWithoutContext('Flutter Windows UWP desktop not enabled with config on stable', () {
+      final FeatureFlags featureFlags = createFlags('stable');
+      testConfig.setValue('enable-windows-uwp-desktop', true);
+
+      expect(featureFlags.isWindowsUwpEnabled, false);
+    });
+
+    for (final Feature feature in <Feature>[
+      flutterWindowsDesktopFeature,
+      flutterMacOSDesktopFeature,
+      flutterLinuxDesktopFeature,
+    ]) {
+      test('${feature.name} available and enabled by default on master', () {
+        expect(feature.master.enabledByDefault, true);
+        expect(feature.master.available, true);
+      });
+      test('${feature.name} available and enabled by default on beta', () {
+        expect(feature.beta.enabledByDefault, true);
+        expect(feature.beta.available, true);
+      });
+      test('${feature.name} available and enabled by default on stable', () {
+        expect(feature.stable.enabledByDefault, true);
+        expect(feature.stable.available, true);
+      });
+    }
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   });
 }

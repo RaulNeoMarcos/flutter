@@ -368,8 +368,13 @@ class CocoaPods {
         '  pod repo update\n',
         emphasis: true,
       );
+<<<<<<< HEAD
     } else if ((_isFfiX86Error(stdout) || _isFfiX86Error(stderr)) &&
         _operatingSystemUtils.hostPlatform == HostPlatform.darwin_arm64) {
+=======
+    } else if ((stderr.contains('ffi_c.bundle') || stderr.contains('/ffi/')) &&
+        _operatingSystemUtils.hostPlatform == HostPlatform.darwin_arm) {
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       // https://github.com/flutter/flutter/issues/70796
       UsageEvent(
         'pod-install-failure',

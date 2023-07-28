@@ -591,9 +591,19 @@ void main() {
       ),
     );
 
+<<<<<<< HEAD
     expect(tester.getSize(find.byType(TextButton)), const Size(134.0, 48.0));
     expect(tester.getSize(find.byType(Text)), const Size(126.0, 42.0));
   }, skip: kIsWeb && !isCanvasKit); // https://github.com/flutter/flutter/issues/61016
+=======
+    // Scaled text rendering is different on Linux and Mac by one pixel.
+    // TODO(gspencergoog): Figure out why this is, and fix it. https://github.com/flutter/flutter/issues/12357
+    expect(tester.getSize(find.byType(TextButton)).width, isIn(<double>[133.0, 134.0]));
+    expect(tester.getSize(find.byType(TextButton)).height, equals(48.0));
+    expect(tester.getSize(find.byType(Text)).width, isIn(<double>[126.0, 127.0]));
+    expect(tester.getSize(find.byType(Text)).height, equals(42.0));
+  });
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   testWidgets('TextButton size is configurable by ThemeData.materialTapTargetSize', (WidgetTester tester) async {
     Widget buildFrame(MaterialTapTargetSize tapTargetSize, Key key) {

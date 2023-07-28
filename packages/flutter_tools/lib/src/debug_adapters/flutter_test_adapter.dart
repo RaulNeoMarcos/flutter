@@ -16,6 +16,7 @@ import 'flutter_base_adapter.dart';
 /// A DAP Debug Adapter for running and debugging Flutter tests.
 class FlutterTestDebugAdapter extends FlutterBaseDebugAdapter with TestAdapter {
   FlutterTestDebugAdapter(
+<<<<<<< HEAD
     super.channel, {
     required super.fileSystem,
     required super.platform,
@@ -25,6 +26,22 @@ class FlutterTestDebugAdapter extends FlutterBaseDebugAdapter with TestAdapter {
     super.logger,
     super.onError,
   });
+=======
+    ByteStreamServerChannel channel, {
+    required this.fileSystem,
+    required this.platform,
+    bool ipv6 = false,
+    bool enableDds = true,
+    bool enableAuthCodes = true,
+    Logger? logger,
+  }) : super(
+    channel,
+    ipv6: ipv6,
+    enableDds: enableDds,
+    enableAuthCodes: enableAuthCodes,
+    logger: logger,
+  );
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   /// Called by [attachRequest] to request that we actually connect to the app to be debugged.
   @override

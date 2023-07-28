@@ -119,8 +119,13 @@ import 'theme_data.dart';
 /// | Type         | Flutter implementation  |
 /// | :----------- | :---------------------- |
 /// | Elevated     | [ElevatedButton]        |
+<<<<<<< HEAD
 /// | Filled       | [FilledButton]          |
 /// | Filled Tonal | [FilledButton.tonal]    |
+=======
+/// | Filled       | Styled [ElevatedButton] |
+/// | Filled Tonal | Styled [ElevatedButton] |
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 /// | Outlined     | [OutlinedButton]        |
 /// | Text         | [TextButton]            |
 ///
@@ -403,6 +408,7 @@ class ButtonStyle with Diagnosticable {
   }
 
   @override
+<<<<<<< HEAD
   int get hashCode {
     final List<Object?> values = <Object?>[
       textStyle,
@@ -430,6 +436,30 @@ class ButtonStyle with Diagnosticable {
     ];
     return Object.hashAll(values);
   }
+=======
+  int get hashCode => Object.hash(
+    textStyle,
+    backgroundColor,
+    foregroundColor,
+    overlayColor,
+    shadowColor,
+    surfaceTintColor,
+    elevation,
+    padding,
+    minimumSize,
+    fixedSize,
+    maximumSize,
+    side,
+    shape,
+    mouseCursor,
+    visualDensity,
+    tapTargetSize,
+    animationDuration,
+    enableFeedback,
+    alignment,
+    splashFactory,
+  );
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   @override
   bool operator ==(Object other) {
@@ -496,6 +526,7 @@ class ButtonStyle with Diagnosticable {
       return a;
     }
     return ButtonStyle(
+<<<<<<< HEAD
       textStyle: MaterialStateProperty.lerp<TextStyle?>(a?.textStyle, b?.textStyle, t, TextStyle.lerp),
       backgroundColor: MaterialStateProperty.lerp<Color?>(a?.backgroundColor, b?.backgroundColor, t, Color.lerp),
       foregroundColor: MaterialStateProperty.lerp<Color?>(a?.foregroundColor, b?.foregroundColor, t, Color.lerp),
@@ -509,6 +540,19 @@ class ButtonStyle with Diagnosticable {
       maximumSize: MaterialStateProperty.lerp<Size?>(a?.maximumSize, b?.maximumSize, t, Size.lerp),
       iconColor: MaterialStateProperty.lerp<Color?>(a?.iconColor, b?.iconColor, t, Color.lerp),
       iconSize: MaterialStateProperty.lerp<double?>(a?.iconSize, b?.iconSize, t, lerpDouble),
+=======
+      textStyle: _lerpProperties<TextStyle?>(a?.textStyle, b?.textStyle, t, TextStyle.lerp),
+      backgroundColor: _lerpProperties<Color?>(a?.backgroundColor, b?.backgroundColor, t, Color.lerp),
+      foregroundColor:  _lerpProperties<Color?>(a?.foregroundColor, b?.foregroundColor, t, Color.lerp),
+      overlayColor: _lerpProperties<Color?>(a?.overlayColor, b?.overlayColor, t, Color.lerp),
+      shadowColor: _lerpProperties<Color?>(a?.shadowColor, b?.shadowColor, t, Color.lerp),
+      surfaceTintColor: _lerpProperties<Color?>(a?.surfaceTintColor, b?.surfaceTintColor, t, Color.lerp),
+      elevation: _lerpProperties<double?>(a?.elevation, b?.elevation, t, lerpDouble),
+      padding:  _lerpProperties<EdgeInsetsGeometry?>(a?.padding, b?.padding, t, EdgeInsetsGeometry.lerp),
+      minimumSize: _lerpProperties<Size?>(a?.minimumSize, b?.minimumSize, t, Size.lerp),
+      fixedSize: _lerpProperties<Size?>(a?.fixedSize, b?.fixedSize, t, Size.lerp),
+      maximumSize: _lerpProperties<Size?>(a?.maximumSize, b?.maximumSize, t, Size.lerp),
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       side: _lerpSides(a?.side, b?.side, t),
       shape: MaterialStateProperty.lerp<OutlinedBorder?>(a?.shape, b?.shape, t, OutlinedBorder.lerp),
       mouseCursor: t < 0.5 ? a?.mouseCursor : b?.mouseCursor,

@@ -16,7 +16,6 @@ import 'package:crypto/crypto.dart';
 import 'package:meta/meta.dart';
 import 'package:path/path.dart' as path;
 
-import 'allowlist.dart';
 import 'run_command.dart';
 import 'utils.dart';
 
@@ -1739,6 +1738,11 @@ Future<EvalResult> _evalCommand(String executable, List<String> arguments, {
 }
 
 Future<void> _checkConsumerDependencies() async {
+<<<<<<< HEAD
+  // Skipping this test for releases as it was never intended to work on release
+  // branches, and would fail for the 2.10 releases. See
+  // https://github.com/flutter/flutter/issues/91757.
+=======
   const List<String> kCorePackages = <String>[
     'flutter',
     'flutter_test',
@@ -1819,6 +1823,7 @@ Future<void> _checkConsumerDependencies() async {
       'Thanks!',
     ]);
   }
+>>>>>>> ee4e09cce01d6f2d7f4baebd247fde02e5008851
 }
 
 const String _kDebugOnlyAnnotation = '@_debugOnly';

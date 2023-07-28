@@ -387,7 +387,11 @@ class ShortcutMapProperty extends DiagnosticsProperty<Map<ShortcutActivator, Int
 ///
 ///  * [CharacterActivator], an activator that represents key combinations
 ///    that result in the specified character, such as question mark.
+<<<<<<< HEAD
+class SingleActivator with Diagnosticable implements ShortcutActivator {
+=======
 class SingleActivator with Diagnosticable, MenuSerializableShortcut implements ShortcutActivator {
+>>>>>>> ee4e09cce01d6f2d7f4baebd247fde02e5008851
   /// Triggered when the [trigger] key is pressed while the modifiers are held.
   ///
   /// The [trigger] should be the non-modifier key that is pressed after all the

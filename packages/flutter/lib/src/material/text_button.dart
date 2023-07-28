@@ -153,8 +153,11 @@ class TextButton extends ButtonStyleButton {
     Color? disabledBackgroundColor,
     Color? shadowColor,
     Color? surfaceTintColor,
+<<<<<<< HEAD
     Color? iconColor,
     Color? disabledIconColor,
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     double? elevation,
     TextStyle? textStyle,
     EdgeInsetsGeometry? padding,
@@ -211,7 +214,10 @@ class TextButton extends ButtonStyleButton {
       overlayColor: overlayColor,
       shadowColor: ButtonStyleButton.allOrNull<Color>(shadowColor),
       surfaceTintColor: ButtonStyleButton.allOrNull<Color>(surfaceTintColor),
+<<<<<<< HEAD
       iconColor: iconColorProp,
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       elevation: ButtonStyleButton.allOrNull<double>(elevation),
       padding: ButtonStyleButton.allOrNull<EdgeInsetsGeometry>(padding),
       minimumSize: ButtonStyleButton.allOrNull<Size>(minimumSize),
@@ -256,6 +262,8 @@ class TextButton extends ButtonStyleButton {
   /// The color of the [ButtonStyle.textStyle] is not used, the
   /// [ButtonStyle.foregroundColor] color is used instead.
   /// {@endtemplate}
+  ///
+  /// ## Material 2 defaults
   ///
   /// ## Material 2 defaults
   ///
@@ -306,7 +314,10 @@ class TextButton extends ButtonStyleButton {
   /// If [ThemeData.useMaterial3] is set to true the following defaults will
   /// be used:
   ///
+<<<<<<< HEAD
   /// {@template flutter.material.text_button.material3_defaults}
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   /// * `textStyle` - Theme.textTheme.labelLarge
   /// * `backgroundColor` - transparent
   /// * `foregroundColor`
@@ -320,7 +331,11 @@ class TextButton extends ButtonStyleButton {
   /// * `surfaceTintColor` - null
   /// * `elevation` - 0
   /// * `padding`
+<<<<<<< HEAD
   ///   * `textScaleFactor <= 1` - lerp(horizontal(12), horizontal(4))
+=======
+  ///   * `textScaleFactor <= 1` - all(8)
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   ///   * `1 < textScaleFactor <= 2` - lerp(all(8), horizontal(8))
   ///   * `2 < textScaleFactor <= 3` - lerp(horizontal(8), horizontal(4))
   ///   * `3 < textScaleFactor` - horizontal(4)
@@ -338,16 +353,20 @@ class TextButton extends ButtonStyleButton {
   /// * `enableFeedback` - true
   /// * `alignment` - Alignment.center
   /// * `splashFactory` - Theme.splashFactory
+<<<<<<< HEAD
   ///
   /// For the [TextButton.icon] factory, the end (generally the right) value of
   /// [padding] is increased from 12 to 16.
   /// {@endtemplate}
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
 
     return Theme.of(context).useMaterial3
+<<<<<<< HEAD
       ? _TextButtonDefaultsM3(context)
       : styleFrom(
           foregroundColor: colorScheme.primary,
@@ -357,6 +376,16 @@ class TextButton extends ButtonStyleButton {
           shadowColor: theme.shadowColor,
           elevation: 0,
           textStyle: theme.textTheme.labelLarge,
+=======
+      ? _TokenDefaultsM3(context)
+      : styleFrom(
+          primary: colorScheme.primary,
+          onSurface: colorScheme.onSurface,
+          backgroundColor: Colors.transparent,
+          shadowColor: theme.shadowColor,
+          elevation: 0,
+          textStyle: theme.textTheme.button,
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
           padding: _scaledPadding(context),
           minimumSize: const Size(64, 36),
           maximumSize: Size.infinite,
@@ -381,6 +410,7 @@ class TextButton extends ButtonStyleButton {
 }
 
 EdgeInsetsGeometry _scaledPadding(BuildContext context) {
+<<<<<<< HEAD
   final bool useMaterial3 = Theme.of(context).useMaterial3;
   return ButtonStyleButton.scaledPadding(
     useMaterial3 ? const EdgeInsets.symmetric(horizontal: 12, vertical: 8) :  const EdgeInsets.all(8),
@@ -389,6 +419,19 @@ EdgeInsetsGeometry _scaledPadding(BuildContext context) {
     MediaQuery.textScaleFactorOf(context),
   );
 }
+=======
+  return ButtonStyleButton.scaledPadding(
+    const EdgeInsets.all(8),
+    const EdgeInsets.symmetric(horizontal: 8),
+    const EdgeInsets.symmetric(horizontal: 4),
+    MediaQuery.maybeOf(context)?.textScaleFactor ?? 1,
+  );
+}
+
+@immutable
+class _TextButtonDefaultForeground extends MaterialStateProperty<Color?> {
+  _TextButtonDefaultForeground(this.primary, this.onSurface);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
 @immutable
 class _TextButtonDefaultColor extends MaterialStateProperty<Color?> {
@@ -526,6 +569,7 @@ class _TextButtonWithIconChild extends StatelessWidget {
   }
 }
 
+<<<<<<< HEAD
 // BEGIN GENERATED TOKEN PROPERTIES - TextButton
 
 // Do not edit by hand. The code between the "BEGIN GENERATED" and
@@ -537,6 +581,17 @@ class _TextButtonWithIconChild extends StatelessWidget {
 
 class _TextButtonDefaultsM3 extends ButtonStyle {
   _TextButtonDefaultsM3(this.context)
+=======
+// BEGIN GENERATED TOKEN PROPERTIES
+
+// Generated code to the end of this file. Do not edit by hand.
+// These defaults are generated from the Material Design Token
+// database by the script dev/tools/gen_defaults/bin/gen_defaults.dart.
+
+// Generated version v0_92
+class _TokenDefaultsM3 extends ButtonStyle {
+  _TokenDefaultsM3(this.context)
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
    : super(
        animationDuration: kThemeChangeDuration,
        enableFeedback: true,
@@ -548,24 +603,38 @@ class _TextButtonDefaultsM3 extends ButtonStyle {
 
   @override
   MaterialStateProperty<TextStyle?> get textStyle =>
+<<<<<<< HEAD
     MaterialStatePropertyAll<TextStyle?>(Theme.of(context).textTheme.labelLarge);
 
   @override
   MaterialStateProperty<Color?>? get backgroundColor =>
     const MaterialStatePropertyAll<Color>(Colors.transparent);
+=======
+    MaterialStateProperty.all<TextStyle?>(Theme.of(context).textTheme.labelLarge);
+
+  @override
+  MaterialStateProperty<Color?>? get backgroundColor =>
+    ButtonStyleButton.allOrNull<Color>(Colors.transparent);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   @override
   MaterialStateProperty<Color?>? get foregroundColor =>
     MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+<<<<<<< HEAD
       if (states.contains(MaterialState.disabled)) {
         return _colors.onSurface.withOpacity(0.38);
       }
+=======
+      if (states.contains(MaterialState.disabled))
+        return _colors.onSurface.withOpacity(0.38);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       return _colors.primary;
     });
 
   @override
   MaterialStateProperty<Color?>? get overlayColor =>
     MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+<<<<<<< HEAD
       if (states.contains(MaterialState.hovered)) {
         return _colors.primary.withOpacity(0.08);
       }
@@ -597,25 +666,64 @@ class _TextButtonDefaultsM3 extends ButtonStyle {
   @override
   MaterialStateProperty<Size>? get minimumSize =>
     const MaterialStatePropertyAll<Size>(Size(64.0, 40.0));
+=======
+      if (states.contains(MaterialState.hovered))
+        return _colors.primary.withOpacity(0.08);
+      if (states.contains(MaterialState.focused))
+        return _colors.primary.withOpacity(0.12);
+      if (states.contains(MaterialState.pressed))
+        return _colors.primary.withOpacity(0.12);
+      return null;
+    });
+
+  // No default shadow color
+
+  // No default surface tint color
+
+  @override
+  MaterialStateProperty<double>? get elevation =>
+    ButtonStyleButton.allOrNull<double>(0.0);
+
+  @override
+  MaterialStateProperty<EdgeInsetsGeometry>? get padding =>
+    ButtonStyleButton.allOrNull<EdgeInsetsGeometry>(_scaledPadding(context));
+
+  @override
+  MaterialStateProperty<Size>? get minimumSize =>
+    ButtonStyleButton.allOrNull<Size>(const Size(64.0, 40.0));
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   // No default fixedSize
 
   @override
   MaterialStateProperty<Size>? get maximumSize =>
+<<<<<<< HEAD
     const MaterialStatePropertyAll<Size>(Size.infinite);
+=======
+    ButtonStyleButton.allOrNull<Size>(Size.infinite);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   // No default side
 
   @override
   MaterialStateProperty<OutlinedBorder>? get shape =>
+<<<<<<< HEAD
     const MaterialStatePropertyAll<OutlinedBorder>(StadiumBorder());
+=======
+    ButtonStyleButton.allOrNull<OutlinedBorder>(const StadiumBorder());
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   @override
   MaterialStateProperty<MouseCursor?>? get mouseCursor =>
     MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+<<<<<<< HEAD
       if (states.contains(MaterialState.disabled)) {
         return SystemMouseCursors.basic;
       }
+=======
+      if (states.contains(MaterialState.disabled))
+        return SystemMouseCursors.basic;
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       return SystemMouseCursors.click;
     });
 
@@ -629,4 +737,8 @@ class _TextButtonDefaultsM3 extends ButtonStyle {
   InteractiveInkFeatureFactory? get splashFactory => Theme.of(context).splashFactory;
 }
 
+<<<<<<< HEAD
 // END GENERATED TOKEN PROPERTIES - TextButton
+=======
+// END GENERATED TOKEN PROPERTIES
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16

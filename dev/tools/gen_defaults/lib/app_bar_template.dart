@@ -5,7 +5,11 @@
 import 'template.dart';
 
 class AppBarTemplate extends TokenTemplate {
+<<<<<<< HEAD
   const AppBarTemplate(super.blockName, super.fileName, super.tokens)
+=======
+  const AppBarTemplate(super.fileName, super.tokens)
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     : super(
       colorSchemePrefix: '_colors.',
       textThemePrefix: '_textTheme.',
@@ -13,8 +17,14 @@ class AppBarTemplate extends TokenTemplate {
 
   @override
   String generate() => '''
+<<<<<<< HEAD
 class _${blockName}DefaultsM3 extends AppBarTheme {
   _${blockName}DefaultsM3(this.context)
+=======
+// Generated version ${tokens["version"]}
+class _TokenDefaultsM3 extends AppBarTheme {
+  _TokenDefaultsM3(this.context)
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     : super(
       elevation: ${elevation('md.comp.top-app-bar.small.container')},
       scrolledUnderElevation: ${elevation('md.comp.top-app-bar.small.on-scroll.container')},
@@ -34,10 +44,14 @@ class _${blockName}DefaultsM3 extends AppBarTheme {
   Color? get foregroundColor => ${color('md.comp.top-app-bar.small.headline.color')};
 
   @override
+<<<<<<< HEAD
   Color? get shadowColor => ${colorOrTransparent('md.comp.top-app-bar.small.container.shadow-color')};
 
   @override
   Color? get surfaceTintColor => ${colorOrTransparent('md.comp.top-app-bar.small.container.surface-tint-layer.color')};
+=======
+  Color? get surfaceTintColor => ${componentColor('md.comp.top-app-bar.small.container.surface-tint-layer')};
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   @override
   IconThemeData? get iconTheme => IconThemeData(
@@ -52,6 +66,7 @@ class _${blockName}DefaultsM3 extends AppBarTheme {
   );
 
   @override
+<<<<<<< HEAD
   TextStyle? get toolbarTextStyle => _textTheme.bodyMedium;
 
   @override
@@ -117,4 +132,11 @@ class _LargeScrollUnderFlexibleConfig with _ScrollUnderFlexibleConfig {
   EdgeInsetsGeometry? get expandedTitlePadding => const EdgeInsets.fromLTRB(16, 0, 16, 28);
 }
 ''';
+=======
+  TextStyle? get toolbarTextStyle => _textTheme.bodyText2;
+
+  @override
+  TextStyle? get titleTextStyle => ${textStyle('md.comp.top-app-bar.small.headline')};
+}''';
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 }

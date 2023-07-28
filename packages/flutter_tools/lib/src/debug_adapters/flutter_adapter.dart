@@ -17,6 +17,7 @@ import 'flutter_base_adapter.dart';
 /// A DAP Debug Adapter for running and debugging Flutter applications.
 class FlutterDebugAdapter extends FlutterBaseDebugAdapter {
   FlutterDebugAdapter(
+<<<<<<< HEAD
     super.channel, {
     required super.fileSystem,
     required super.platform,
@@ -26,6 +27,22 @@ class FlutterDebugAdapter extends FlutterBaseDebugAdapter {
     super.logger,
     super.onError,
   });
+=======
+    ByteStreamServerChannel channel, {
+    required this.fileSystem,
+    required this.platform,
+    bool ipv6 = false,
+    bool enableDds = true,
+    bool enableAuthCodes = true,
+    Logger? logger,
+  }) : super(
+    channel,
+    ipv6: ipv6,
+    enableDds: enableDds,
+    enableAuthCodes: enableAuthCodes,
+    logger: logger,
+  );
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   /// A completer that completes when the app.started event has been received.
   final Completer<void> _appStartedCompleter = Completer<void>();

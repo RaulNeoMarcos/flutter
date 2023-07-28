@@ -8,12 +8,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-import 'button_style.dart';
+import 'button.dart';
 import 'color_scheme.dart';
 import 'constants.dart';
-import 'ink_ripple.dart';
+import 'debug.dart';
 import 'material_state.dart';
-import 'text_button.dart';
 import 'theme.dart';
 import 'theme_data.dart';
 import 'toggle_buttons_theme.dart';
@@ -207,7 +206,17 @@ class ToggleButtons extends StatelessWidget {
     this.borderWidth,
     this.direction = Axis.horizontal,
     this.verticalDirection = VerticalDirection.down,
+<<<<<<< HEAD
   }) : assert(children.length == isSelected.length);
+=======
+  }) :
+    assert(children != null),
+    assert(isSelected != null),
+    assert(children.length == isSelected.length),
+    assert(direction != null),
+    assert(direction == Axis.horizontal || verticalDirection != null),
+    super(key: key);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   static const double _defaultBorderWidth = 1.0;
 
@@ -670,6 +679,7 @@ class ToggleButtons extends StatelessWidget {
       final BorderSide borderSide = _getBorderSide(index, theme, toggleButtonsTheme);
       final BorderSide trailingBorderSide = _getTrailingBorderSide(index, theme, toggleButtonsTheme);
 
+<<<<<<< HEAD
       final Set<MaterialState> states = <MaterialState>{
           if (isSelected[index] && onPressed != null) MaterialState.selected,
           if (onPressed == null) MaterialState.disabled,
@@ -723,14 +733,35 @@ class ToggleButtons extends StatelessWidget {
       }
 
       Widget button = _SelectToggleButton(
+=======
+      return _ToggleButton(
+        selected: isSelected[index],
+        textStyle: textStyle,
+        constraints: constraints,
+        color: color,
+        selectedColor: selectedColor,
+        disabledColor: disabledColor,
+        fillColor: fillColor,
+        focusColor: focusColor ?? toggleButtonsTheme.focusColor,
+        highlightColor: highlightColor ?? toggleButtonsTheme.highlightColor,
+        hoverColor: hoverColor ?? toggleButtonsTheme.hoverColor,
+        splashColor: splashColor ?? toggleButtonsTheme.splashColor,
+        focusNode: focusNodes != null ? focusNodes![index] : null,
+        onPressed: onPressed != null
+          ? () {onPressed!(index);}
+          : null,
+        mouseCursor: mouseCursor,
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
         leadingBorderSide: leadingBorderSide,
         borderSide: borderSide,
         trailingBorderSide: trailingBorderSide,
         borderRadius: edgeBorderRadius,
+        clipRadius: clipBorderRadius,
         isFirstButton: index == 0,
         isLastButton: index == children.length - 1,
         direction: direction,
         verticalDirection: verticalDirection,
+<<<<<<< HEAD
         child: ClipRRect(
           borderRadius: clipBorderRadius,
           child: TextButton(
@@ -770,6 +801,9 @@ class ToggleButtons extends StatelessWidget {
             child: children[index],
           ),
         ),
+=======
+        child: children[index],
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       );
 
       if (currentConstraints != null) {
@@ -801,6 +835,7 @@ class ToggleButtons extends StatelessWidget {
       );
     }
 
+<<<<<<< HEAD
     return IntrinsicHeight(
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -808,6 +843,19 @@ class ToggleButtons extends StatelessWidget {
         children: buttons,
       ),
     );
+=======
+    final MaterialTapTargetSize resolvedTapTargetSize = tapTargetSize ?? theme.materialTapTargetSize;
+    switch (resolvedTapTargetSize) {
+      case MaterialTapTargetSize.padded:
+        return _InputPadding(
+          minSize: const Size(kMinInteractiveDimension, kMinInteractiveDimension),
+          direction: direction,
+          child: result,
+        );
+      case MaterialTapTargetSize.shrinkWrap:
+        return result;
+    }
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   }
 
   @override
@@ -834,6 +882,251 @@ class ToggleButtons extends StatelessWidget {
     properties.add(DoubleProperty('borderWidth', borderWidth, defaultValue: null));
     properties.add(DiagnosticsProperty<Axis>('direction', direction, defaultValue: Axis.horizontal));
     properties.add(DiagnosticsProperty<VerticalDirection>('verticalDirection', verticalDirection, defaultValue: VerticalDirection.down));
+  }
+}
+
+/// An individual toggle button, otherwise known as a segmented button.
+///
+/// This button is used by [ToggleButtons] to implement a set of segmented controls.
+class _ToggleButton extends StatelessWidget {
+  /// Creates a toggle button based on [RawMaterialButton].
+  ///
+  /// This class adds some logic to distinguish between enabled, active, and
+  /// disabled states, to determine the appropriate colors to use.
+  ///
+  /// It takes in a [shape] property to modify the borders of the button,
+  /// which is used by [ToggleButtons] to customize borders based on the
+  /// order in which this button appears in the list.
+  const _ToggleButton({
+    Key? key,
+    this.selected = false,
+    this.textStyle,
+    this.constraints,
+    this.color,
+    this.selectedColor,
+    this.disabledColor,
+    required this.fillColor,
+    required this.focusColor,
+    required this.highlightColor,
+    required this.hoverColor,
+    required this.splashColor,
+    this.focusNode,
+    this.onPressed,
+    this.mouseCursor,
+    required this.leadingBorderSide,
+    required this.borderSide,
+    required this.trailingBorderSide,
+    required this.borderRadius,
+    required this.clipRadius,
+    required this.isFirstButton,
+    required this.isLastButton,
+    required this.direction,
+    required this.verticalDirection,
+    required this.child,
+  }) : super(key: key);
+
+  /// Determines if the button is displayed as active/selected or enabled.
+  final bool selected;
+
+  /// The [TextStyle] to apply to any text that appears in this button.
+  final TextStyle? textStyle;
+
+  /// Defines the button's size.
+  ///
+  /// Typically used to constrain the button's minimum size.
+  final BoxConstraints? constraints;
+
+  /// The color for [Text] and [Icon] widgets if the button is enabled.
+  ///
+  /// If [selected] is false and [onPressed] is not null, this color will be used.
+  final Color? color;
+
+  /// The color for [Text] and [Icon] widgets if the button is selected.
+  ///
+  /// If [selected] is true and [onPressed] is not null, this color will be used.
+  final Color? selectedColor;
+
+  /// The color for [Text] and [Icon] widgets if the button is disabled.
+  ///
+  /// If [onPressed] is null, this color will be used.
+  final Color? disabledColor;
+
+  /// The color of the button's [Material].
+  final Color? fillColor;
+
+  /// The color for the button's [Material] when it has the input focus.
+  final Color? focusColor;
+
+  /// The color for the button's [Material] when a pointer is hovering over it.
+  final Color? hoverColor;
+
+  /// The highlight color for the button's [InkWell].
+  final Color? highlightColor;
+
+  /// The splash color for the button's [InkWell].
+  final Color? splashColor;
+
+  /// {@macro flutter.widgets.Focus.focusNode}
+  final FocusNode? focusNode;
+
+  /// Called when the button is tapped or otherwise activated.
+  ///
+  /// If this is null, the button will be disabled, see [enabled].
+  final VoidCallback? onPressed;
+
+  /// {@macro flutter.material.RawMaterialButton.mouseCursor}
+  ///
+  /// If this property is null, [MaterialStateMouseCursor.clickable] will be used.
+  final MouseCursor? mouseCursor;
+
+  /// The width and color of the button's leading side border.
+  final BorderSide leadingBorderSide;
+
+  /// If [direction] is [Axis.horizontal], this corresponds the width and color
+  /// of the button's top and bottom side borders.
+  ///
+  /// If [direction] is [Axis.vertical], this corresponds the width and color
+  /// of the button's left and right side borders.
+  final BorderSide borderSide;
+
+  /// The width and color of the button's trailing side border.
+  final BorderSide trailingBorderSide;
+
+  /// The border radii of each corner of the button.
+  final BorderRadius borderRadius;
+
+  /// The corner radii used to clip the button's contents.
+  ///
+  /// This is used to have the button's contents be properly clipped taking
+  /// the [borderRadius] and the border's width into account.
+  final BorderRadius clipRadius;
+
+  /// Whether or not this toggle button is the first button in the list.
+  final bool isFirstButton;
+
+  /// Whether or not this toggle button is the last button in the list.
+  final bool isLastButton;
+
+  /// The direction along which the buttons are rendered.
+  final Axis direction;
+
+  /// If [direction] is [Axis.vertical], this property defines whether or not this button in its list
+  /// of buttons is laid out starting from top to bottom or from bottom to top.
+  final VerticalDirection verticalDirection;
+
+  /// The button's label, which is usually an [Icon] or a [Text] widget.
+  final Widget child;
+
+  Color _resolveColor(Set<MaterialState> states, MaterialStateProperty<Color?> widgetColor,
+  MaterialStateProperty<Color?> themeColor, MaterialStateProperty<Color> defaultColor) {
+    return widgetColor.resolve(states)
+      ?? themeColor.resolve(states)
+      ?? defaultColor.resolve(states);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    assert(debugCheckHasMaterial(context));
+    final Color currentColor;
+    Color? currentFocusColor;
+    Color? currentHoverColor;
+    Color? currentSplashColor;
+    final ThemeData theme = Theme.of(context);
+    final ToggleButtonsThemeData toggleButtonsTheme = ToggleButtonsTheme.of(context);
+
+    final Set<MaterialState> states = <MaterialState>{
+        if (selected && onPressed != null) MaterialState.selected,
+        if (onPressed == null) MaterialState.disabled,
+    };
+
+    final Color currentFillColor = _resolveColor(
+      states,
+      _ResolveFillColor(fillColor),
+      _ResolveFillColor(toggleButtonsTheme.fillColor),
+      _DefaultFillColor(theme.colorScheme),
+    );
+
+    if (onPressed != null && selected) {
+      currentColor = selectedColor
+        ?? toggleButtonsTheme.selectedColor
+        ?? theme.colorScheme.primary;
+      currentFocusColor = focusColor
+        ?? toggleButtonsTheme.focusColor
+        ?? theme.colorScheme.primary.withOpacity(0.12);
+      currentHoverColor = hoverColor
+        ?? toggleButtonsTheme.hoverColor
+        ?? theme.colorScheme.primary.withOpacity(0.04);
+      currentSplashColor = splashColor
+        ?? toggleButtonsTheme.splashColor
+        ?? theme.colorScheme.primary.withOpacity(0.16);
+    } else if (onPressed != null && !selected) {
+      currentColor = color
+        ?? toggleButtonsTheme.color
+        ?? theme.colorScheme.onSurface.withOpacity(0.87);
+      currentFocusColor = focusColor
+        ?? toggleButtonsTheme.focusColor
+        ?? theme.colorScheme.onSurface.withOpacity(0.12);
+      currentHoverColor = hoverColor
+        ?? toggleButtonsTheme.hoverColor
+        ?? theme.colorScheme.onSurface.withOpacity(0.04);
+      currentSplashColor = splashColor
+        ?? toggleButtonsTheme.splashColor
+        ?? theme.colorScheme.onSurface.withOpacity(0.16);
+    } else {
+      currentColor = disabledColor
+        ?? toggleButtonsTheme.disabledColor
+        ?? theme.colorScheme.onSurface.withOpacity(0.38);
+    }
+
+    final TextStyle currentTextStyle = textStyle ?? toggleButtonsTheme.textStyle ?? theme.textTheme.bodyText2!;
+    final BoxConstraints currentConstraints = constraints ?? toggleButtonsTheme.constraints ?? const BoxConstraints(minWidth: kMinInteractiveDimension, minHeight: kMinInteractiveDimension);
+
+    final Widget result = ClipRRect(
+      borderRadius: clipRadius,
+      child: RawMaterialButton(
+        textStyle: currentTextStyle.copyWith(
+          color: currentColor,
+        ),
+        constraints: currentConstraints,
+        elevation: 0.0,
+        fillColor: currentFillColor,
+        focusColor: currentFocusColor,
+        focusElevation: 0,
+        highlightColor: highlightColor ?? theme.colorScheme.surface.withOpacity(0.0),
+        highlightElevation: 0.0,
+        hoverColor: currentHoverColor,
+        hoverElevation: 0,
+        splashColor: currentSplashColor,
+        focusNode: focusNode,
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        onPressed: onPressed,
+        mouseCursor: mouseCursor,
+        child: child,
+      ),
+    );
+
+    return _SelectToggleButton(
+      key: key,
+      leadingBorderSide: leadingBorderSide,
+      borderSide: borderSide,
+      trailingBorderSide: trailingBorderSide,
+      borderRadius: borderRadius,
+      isFirstButton: isFirstButton,
+      isLastButton: isLastButton,
+      direction: direction,
+      verticalDirection: verticalDirection,
+      child: result,
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(FlagProperty('selected',
+      value: selected,
+      ifTrue: 'Button is selected',
+      ifFalse: 'Button is unselected',
+    ));
   }
 }
 
@@ -864,68 +1157,6 @@ class _DefaultFillColor extends MaterialStateProperty<Color> with Diagnosticable
       return colorScheme.primary.withOpacity(0.12);
     }
     return colorScheme.surface.withOpacity(0.0);
-  }
-}
-
-@immutable
-class _ToggleButtonDefaultOverlay extends MaterialStateProperty<Color?> {
-  _ToggleButtonDefaultOverlay({
-    required this.selected,
-    required this.unselected,
-    this.colorScheme,
-    this.focusColor,
-    this.highlightColor,
-    this.hoverColor,
-    this.splashColor,
-    this.disabledColor,
-  });
-
-  final bool selected;
-  final bool unselected;
-  final ColorScheme? colorScheme;
-  final Color? focusColor;
-  final Color? highlightColor;
-  final Color? hoverColor;
-  final Color? splashColor;
-  final Color? disabledColor;
-
-  @override
-  Color? resolve(Set<MaterialState> states) {
-    if (selected) {
-      if (states.contains(MaterialState.hovered)) {
-        return hoverColor ?? colorScheme?.primary.withOpacity(0.04);
-      } else if (states.contains(MaterialState.focused)) {
-        return focusColor ?? colorScheme?.primary.withOpacity(0.12);
-      } else if (states.contains(MaterialState.pressed)) {
-        return splashColor ?? colorScheme?.primary.withOpacity(0.16);
-      }
-    } else if (unselected) {
-      if (states.contains(MaterialState.hovered)) {
-        return hoverColor ?? colorScheme?.onSurface.withOpacity(0.04);
-      } else if (states.contains(MaterialState.focused)) {
-        return focusColor ?? colorScheme?.onSurface.withOpacity(0.12);
-      } else if (states.contains(MaterialState.pressed)) {
-        return splashColor ?? highlightColor ?? colorScheme?.onSurface.withOpacity(0.16);
-      }
-    }
-    return null;
-  }
-
-  @override
-  String toString() {
-    return '''
-    {
-      selected:
-        hovered: $hoverColor, otherwise: ${colorScheme?.primary.withOpacity(0.04)},
-        focused: $focusColor, otherwise: ${colorScheme?.primary.withOpacity(0.12)},
-        pressed: $splashColor, otherwise: ${colorScheme?.primary.withOpacity(0.16)},
-      unselected:
-        hovered: $hoverColor, otherwise: ${colorScheme?.onSurface.withOpacity(0.04)},
-        focused: $focusColor, otherwise: ${colorScheme?.onSurface.withOpacity(0.12)},
-        pressed: $splashColor, otherwise: ${colorScheme?.onSurface.withOpacity(0.16)},
-      otherwise: null,
-    }
-    ''';
   }
 }
 
@@ -1484,10 +1715,18 @@ class _SelectToggleButtonRenderObject extends RenderShiftedBox {
 /// visually smaller to the user.
 class _InputPadding extends SingleChildRenderObjectWidget {
   const _InputPadding({
+<<<<<<< HEAD
     super.child,
     required this.minSize,
     required this.direction,
   });
+=======
+    Key? key,
+    Widget? child,
+    required this.minSize,
+    required this.direction,
+  }) : super(key: key, child: child);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   final Size minSize;
   final Axis direction;
@@ -1510,9 +1749,14 @@ class _RenderInputPadding extends RenderShiftedBox {
   Size get minSize => _minSize;
   Size _minSize;
   set minSize(Size value) {
+<<<<<<< HEAD
     if (_minSize == value) {
       return;
     }
+=======
+    if (_minSize == value)
+      return;
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     _minSize = value;
     markNeedsLayout();
   }
@@ -1520,42 +1764,67 @@ class _RenderInputPadding extends RenderShiftedBox {
   Axis get direction => _direction;
   Axis _direction;
   set direction(Axis value) {
+<<<<<<< HEAD
     if (_direction == value) {
       return;
     }
+=======
+    if (_direction == value)
+      return;
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     _direction = value;
     markNeedsLayout();
   }
 
   @override
   double computeMinIntrinsicWidth(double height) {
+<<<<<<< HEAD
     if (child != null) {
       return math.max(child!.getMinIntrinsicWidth(height), minSize.width);
     }
+=======
+    if (child != null)
+      return math.max(child!.getMinIntrinsicWidth(height), minSize.width);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     return 0.0;
   }
 
   @override
   double computeMinIntrinsicHeight(double width) {
+<<<<<<< HEAD
     if (child != null) {
       return math.max(child!.getMinIntrinsicHeight(width), minSize.height);
     }
+=======
+    if (child != null)
+      return math.max(child!.getMinIntrinsicHeight(width), minSize.height);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     return 0.0;
   }
 
   @override
   double computeMaxIntrinsicWidth(double height) {
+<<<<<<< HEAD
     if (child != null) {
       return math.max(child!.getMaxIntrinsicWidth(height), minSize.width);
     }
+=======
+    if (child != null)
+      return math.max(child!.getMaxIntrinsicWidth(height), minSize.width);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     return 0.0;
   }
 
   @override
   double computeMaxIntrinsicHeight(double width) {
+<<<<<<< HEAD
     if (child != null) {
       return math.max(child!.getMaxIntrinsicHeight(width), minSize.height);
     }
+=======
+    if (child != null)
+      return math.max(child!.getMaxIntrinsicHeight(width), minSize.height);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     return 0.0;
   }
 

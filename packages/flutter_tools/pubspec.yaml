@@ -7,6 +7,7 @@ environment:
 
 dependencies:
   # To update these, use "flutter update-packages --force-upgrade".
+<<<<<<< HEAD
   archive: 3.3.2
   args: 2.4.0
   browser_launcher: 1.1.1
@@ -22,6 +23,23 @@ dependencies:
   intl: 0.18.0
   meta: 1.9.1
   multicast_dns: 0.3.2+3
+=======
+  archive: 3.1.11
+  args: 2.3.0
+  browser_launcher: 1.1.0
+  dds: 2.2.0
+  dwds: 12.1.1
+  completion: 1.0.0
+  coverage: 1.2.0
+  crypto: 3.0.1
+  file: 6.1.2
+  flutter_template_images: 4.0.0
+  html: 0.15.0
+  http: 0.13.4
+  intl: 0.17.0
+  meta: 1.7.0
+  multicast_dns: 0.3.2
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   mustache_template: 2.0.0
   package_config: 2.1.0
   process: 4.2.4
@@ -105,4 +123,12 @@ dartdoc:
   # Exclude this package from the hosted API docs.
   nodoc: true
 
+<<<<<<< HEAD
 # PUBSPEC CHECKSUM: 473c
+=======
+<<<<<<< HEAD
+# PUBSPEC CHECKSUM: d112
+=======
+# PUBSPEC CHECKSUM: 0a1c
+>>>>>>> ee4e09cce01d6f2d7f4baebd247fde02e5008851
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16

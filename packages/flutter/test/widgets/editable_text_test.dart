@@ -12682,6 +12682,8 @@ testWidgets('Floating cursor ending with selection', (WidgetTester tester) async
     }, variant: TargetPlatformVariant.all(excluding: <TargetPlatform>{ TargetPlatform.iOS, TargetPlatform.macOS }));
   });
 
+<<<<<<< HEAD
+=======
   testWidgets('Should not scroll on paste if caret already visible', (WidgetTester tester) async {
     // Regression test for https://github.com/flutter/flutter/issues/96658.
     final ScrollController scrollController = ScrollController();
@@ -12726,6 +12728,7 @@ testWidgets('Floating cursor ending with selection', (WidgetTester tester) async
     expect(scrollController.offset, 0.0);
   });
 
+>>>>>>> ee4e09cce01d6f2d7f4baebd247fde02e5008851
   testWidgets('Autofill enabled by default', (WidgetTester tester) async {
     final FocusNode focusNode = FocusNode();
     await tester.pumpWidget(
@@ -12772,6 +12775,8 @@ testWidgets('Floating cursor ending with selection', (WidgetTester tester) async
       isNot(contains(matchesMethodCall('TextInput.requestAutofill'))),
     );
   });
+<<<<<<< HEAD
+=======
 
   group('TextEditingHistory', () {
     Future<void> sendUndoRedo(WidgetTester tester, [bool redo = false]) {
@@ -14196,6 +14201,7 @@ testWidgets('Floating cursor ending with selection', (WidgetTester tester) async
     expect(tester.takeException(), null);
   // On web, the text selection toolbar cut button is handled by the browser.
   }, skip: kIsWeb); // [intended]
+<<<<<<< HEAD
 
   group('Mac document shortcuts', () {
     testWidgets('ctrl-A/E', (WidgetTester tester) async {
@@ -15795,6 +15801,9 @@ testWidgets('Floating cursor ending with selection', (WidgetTester tester) async
 
     expect(state.buildTextSpan().style!.fontWeight, FontWeight.bold);
   });
+=======
+>>>>>>> ee4e09cce01d6f2d7f4baebd247fde02e5008851
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 }
 
 class UnsettableController extends TextEditingController {

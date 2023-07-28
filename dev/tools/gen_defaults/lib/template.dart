@@ -104,7 +104,11 @@ abstract class TokenTemplate {
   String color(String colorToken, [String defaultValue = 'null']) {
     return tokens.containsKey(colorToken)
       ? '$colorSchemePrefix${tokens[colorToken]}'
+<<<<<<< HEAD
       : defaultValue;
+=======
+      : 'null';
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   }
 
   /// Generate a [ColorScheme] color name for the given token or a transparent
@@ -145,6 +149,7 @@ abstract class TokenTemplate {
   }
 
   /// Generate the opacity value for the given token.
+<<<<<<< HEAD
   String? opacity(String token) => _numToString(tokens[token]);
 
   String? _numToString(Object? value, [int? digits]) {
@@ -156,6 +161,15 @@ abstract class TokenTemplate {
         return 'double.infinity';
       }
       return digits == null ? value.toString() : value.toStringAsFixed(digits);
+=======
+  String? opacity(String token) {
+    final dynamic value = tokens[token];
+    if (value == null) {
+      return null;
+    }
+    if (value is double) {
+      return value.toString();
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     }
     return tokens[value].toString();
   }
@@ -228,7 +242,11 @@ abstract class TokenTemplate {
       return 'null';
     }
     final String borderColor = componentColor(componentToken);
+<<<<<<< HEAD
     final double width = (tokens['$componentToken.width'] ?? tokens['$componentToken.height'] ?? 1.0) as double;
+=======
+    final double width = (tokens['$componentToken.width'] ?? 1.0) as double;
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     return 'BorderSide(color: $borderColor${width != 1.0 ? ", width: $width" : ""})';
   }
 

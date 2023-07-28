@@ -184,7 +184,10 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
     this.bottom,
     this.elevation,
     this.scrolledUnderElevation,
+<<<<<<< HEAD
     this.notificationPredicate = defaultScrollNotificationPredicate,
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     this.shadowColor,
     this.surfaceTintColor,
     this.shape,
@@ -430,6 +433,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   ///    shadow.
   final double? scrolledUnderElevation;
 
+<<<<<<< HEAD
   /// A check that specifies which child's [ScrollNotification]s should be
   /// listened to.
   ///
@@ -437,6 +441,8 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   /// else for more complicated layouts.
   final ScrollNotificationPredicate notificationPredicate;
 
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   /// {@template flutter.material.appbar.shadowColor}
   /// The color of the shadow below the app bar.
   ///
@@ -700,6 +706,7 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
   ///    system overlays style.
   final SystemUiOverlayStyle? systemOverlayStyle;
 
+<<<<<<< HEAD
   /// {@template flutter.material.appbar.forceMaterialTransparency}
   /// Forces the AppBar's Material widget type to be [MaterialType.transparency]
   /// (instead of Material's default type).
@@ -720,6 +727,11 @@ class AppBar extends StatefulWidget implements PreferredSizeWidget {
 
   bool _getEffectiveCenterTitle(ThemeData theme) {
     bool platformCenter() {
+=======
+  bool _getEffectiveCenterTitle(ThemeData theme) {
+    bool platformCenter() {
+      assert(theme.platform != null);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
       switch (theme.platform) {
         case TargetPlatform.android:
         case TargetPlatform.fuchsia:
@@ -812,9 +824,14 @@ class _AppBarState extends State<AppBar> {
     assert(!widget.primary || debugCheckHasMediaQuery(context));
     assert(debugCheckHasMaterialLocalizations(context));
     final ThemeData theme = Theme.of(context);
+<<<<<<< HEAD
     final IconButtonThemeData iconButtonTheme = IconButtonTheme.of(context);
     final AppBarTheme appBarTheme = AppBarTheme.of(context);
     final AppBarTheme defaults = theme.useMaterial3 ? _AppBarDefaultsM3(context) : _AppBarDefaultsM2(context);
+=======
+    final AppBarTheme appBarTheme = AppBarTheme.of(context);
+    final AppBarTheme defaults = theme.useMaterial3 ? _TokenDefaultsM3(context) : _DefaultsM2(context);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     final ScaffoldState? scaffold = Scaffold.maybeOf(context);
     final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
 
@@ -830,20 +847,55 @@ class _AppBarState extends State<AppBar> {
 
     final double toolbarHeight = widget.toolbarHeight ?? appBarTheme.toolbarHeight ?? kToolbarHeight;
 
+<<<<<<< HEAD
     final Color backgroundColor = _resolveColor(
       states,
       widget.backgroundColor,
       appBarTheme.backgroundColor,
       defaults.backgroundColor!,
     );
+=======
+    final Color backgroundColor = backwardsCompatibility
+      ? widget.backgroundColor
+        ?? appBarTheme.backgroundColor
+        ?? theme.primaryColor
+      : _resolveColor(
+          states,
+          widget.backgroundColor,
+          appBarTheme.backgroundColor,
+          defaults.backgroundColor!,
+        );
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
     final Color foregroundColor = widget.foregroundColor
       ?? appBarTheme.foregroundColor
       ?? defaults.foregroundColor!;
+<<<<<<< HEAD
 
     final double elevation = widget.elevation
       ?? appBarTheme.elevation
       ?? defaults.elevation!;
+=======
+
+    final double elevation = widget.elevation
+      ?? appBarTheme.elevation
+      ?? defaults.elevation!;
+
+    final double effectiveElevation = states.contains(MaterialState.scrolledUnder)
+      ? widget.scrolledUnderElevation
+        ?? appBarTheme.scrolledUnderElevation
+        ?? defaults.scrolledUnderElevation
+        ?? elevation
+      : elevation;
+
+    IconThemeData overallIconTheme = backwardsCompatibility
+      ? widget.iconTheme
+        ?? appBarTheme.iconTheme
+        ?? theme.primaryIconTheme
+      : widget.iconTheme
+        ?? appBarTheme.iconTheme
+        ?? defaults.iconTheme!.copyWith(color: foregroundColor);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
     final double effectiveElevation = states.contains(MaterialState.scrolledUnder)
       ? widget.scrolledUnderElevation
@@ -862,6 +914,7 @@ class _AppBarState extends State<AppBar> {
       ?? appBarTheme.actionsIconTheme
       ?? widget.iconTheme
       ?? appBarTheme.iconTheme
+<<<<<<< HEAD
       ?? defaults.actionsIconTheme?.copyWith(color: actionForegroundColor)
       ?? overallIconTheme;
 
@@ -872,6 +925,26 @@ class _AppBarState extends State<AppBar> {
     TextStyle? titleTextStyle = widget.titleTextStyle
       ?? appBarTheme.titleTextStyle
       ?? defaults.titleTextStyle?.copyWith(color: foregroundColor);
+=======
+      ?? defaults.actionsIconTheme?.copyWith(color: foregroundColor)
+      ?? overallIconTheme;
+
+    TextStyle? toolbarTextStyle = backwardsCompatibility
+      ? widget.textTheme?.bodyText2
+        ?? appBarTheme.textTheme?.bodyText2
+        ?? theme.primaryTextTheme.bodyText2
+      : widget.toolbarTextStyle
+        ?? appBarTheme.toolbarTextStyle
+        ?? defaults.toolbarTextStyle?.copyWith(color: foregroundColor);
+
+    TextStyle? titleTextStyle = backwardsCompatibility
+      ? widget.textTheme?.headline6
+        ?? appBarTheme.textTheme?.headline6
+        ?? theme.primaryTextTheme.headline6
+      : widget.titleTextStyle
+        ?? appBarTheme.titleTextStyle
+        ?? defaults.titleTextStyle?.copyWith(color: foregroundColor);
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
     if (widget.toolbarOpacity != 1.0) {
       final double opacity = const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn).transform(widget.toolbarOpacity);
@@ -1117,6 +1190,7 @@ class _AppBarState extends State<AppBar> {
       );
     }
 
+<<<<<<< HEAD
     final SystemUiOverlayStyle overlayStyle = widget.systemOverlayStyle
       ?? appBarTheme.systemOverlayStyle
       ?? defaults.systemOverlayStyle
@@ -1126,6 +1200,18 @@ class _AppBarState extends State<AppBar> {
         // color is picked up by the statusbar.
         theme.useMaterial3 ? const Color(0x00000000) : null,
       );
+=======
+    final SystemUiOverlayStyle overlayStyle = backwardsCompatibility
+      ? _systemOverlayStyleForBrightness(
+          widget.brightness
+          ?? appBarTheme.brightness
+          ?? ThemeData.estimateBrightnessForColor(backgroundColor),
+        )
+      : widget.systemOverlayStyle
+        ?? appBarTheme.systemOverlayStyle
+        ?? defaults.systemOverlayStyle
+        ?? _systemOverlayStyleForBrightness(ThemeData.estimateBrightnessForColor(backgroundColor));
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
     return Semantics(
       container: true,
@@ -1134,9 +1220,12 @@ class _AppBarState extends State<AppBar> {
         child: Material(
           color: backgroundColor,
           elevation: effectiveElevation,
+<<<<<<< HEAD
           type: widget.forceMaterialTransparency
               ? MaterialType.transparency
               : MaterialType.canvas,
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
           shadowColor: widget.shadowColor
             ?? appBarTheme.shadowColor
             ?? defaults.shadowColor,
@@ -1278,7 +1367,11 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
             )
           : flexibleSpace,
         bottom: bottom,
+<<<<<<< HEAD
         elevation: isScrolledUnder ? elevation : 0.0,
+=======
+        elevation: forceElevated || isScrolledUnder ? elevation : 0.0,
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
         scrolledUnderElevation: scrolledUnderElevation,
         shadowColor: shadowColor,
         surfaceTintColor: surfaceTintColor,
@@ -2094,6 +2187,7 @@ class _RenderAppBarTitleBox extends RenderAligningShiftedBox {
   }
 }
 
+<<<<<<< HEAD
 enum _ScrollUnderFlexibleVariant { medium, large }
 
 class _ScrollUnderFlexibleSpace extends StatelessWidget {
@@ -2231,6 +2325,10 @@ mixin _ScrollUnderFlexibleConfig {
 // Hand coded defaults based on Material Design 2.
 class _AppBarDefaultsM2 extends AppBarTheme {
   _AppBarDefaultsM2(this.context)
+=======
+class _DefaultsM2 extends AppBarTheme {
+  _DefaultsM2(this.context)
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     : super(
       elevation: 4.0,
       shadowColor: const Color(0xFF000000),
@@ -2252,6 +2350,7 @@ class _AppBarDefaultsM2 extends AppBarTheme {
   IconThemeData? get iconTheme => _theme.iconTheme;
 
   @override
+<<<<<<< HEAD
   TextStyle? get toolbarTextStyle => _theme.textTheme.bodyMedium;
 
   @override
@@ -2269,6 +2368,23 @@ class _AppBarDefaultsM2 extends AppBarTheme {
 
 class _AppBarDefaultsM3 extends AppBarTheme {
   _AppBarDefaultsM3(this.context)
+=======
+  TextStyle? get toolbarTextStyle => _theme.textTheme.bodyText2;
+
+  @override
+  TextStyle? get titleTextStyle => _theme.textTheme.headline6;
+}
+
+// BEGIN GENERATED TOKEN PROPERTIES
+
+// Generated code to the end of this file. Do not edit by hand.
+// These defaults are generated from the Material Design Token
+// database by the script dev/tools/gen_defaults/bin/gen_defaults.dart.
+
+// Generated version v0_92
+class _TokenDefaultsM3 extends AppBarTheme {
+  _TokenDefaultsM3(this.context)
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
     : super(
       elevation: 0.0,
       scrolledUnderElevation: 3.0,
@@ -2288,9 +2404,12 @@ class _AppBarDefaultsM3 extends AppBarTheme {
   Color? get foregroundColor => _colors.onSurface;
 
   @override
+<<<<<<< HEAD
   Color? get shadowColor => Colors.transparent;
 
   @override
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
   Color? get surfaceTintColor => _colors.surfaceTint;
 
   @override
@@ -2306,11 +2425,16 @@ class _AppBarDefaultsM3 extends AppBarTheme {
   );
 
   @override
+<<<<<<< HEAD
   TextStyle? get toolbarTextStyle => _textTheme.bodyMedium;
+=======
+  TextStyle? get toolbarTextStyle => _textTheme.bodyText2;
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 
   @override
   TextStyle? get titleTextStyle => _textTheme.titleLarge;
 }
+<<<<<<< HEAD
 
 // Variant configuration
 class _MediumScrollUnderFlexibleConfig with _ScrollUnderFlexibleConfig {
@@ -2372,3 +2496,6 @@ class _LargeScrollUnderFlexibleConfig with _ScrollUnderFlexibleConfig {
 }
 
 // END GENERATED TOKEN PROPERTIES - AppBar
+=======
+// END GENERATED TOKEN PROPERTIES
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16

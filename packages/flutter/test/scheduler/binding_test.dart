@@ -13,6 +13,7 @@ void main() {
     SchedulerBinding.instance.scheduleForcedFrame();
     expect(SchedulerBinding.instance.platformDispatcher.onBeginFrame, isNotNull);
   });
+<<<<<<< HEAD
 
   test('debugAssertNoTimeDilation does not throw if time dilate already reset', () async {
     timeDilation = 2.0;
@@ -28,4 +29,6 @@ void main() {
     );
     timeDilation = 1.0;
   });
+=======
+>>>>>>> 168659327b67da0aaef384c66e1f2e88dce7ba16
 }
